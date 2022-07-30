@@ -49,3 +49,9 @@ def book():
 #           db.session.commit()
 #        flash('Appointment was booked.', category="success")
     return render_template("bookapp.html", user=current_user)
+
+@views.route('/prof', methods=['GET','POST'])
+@login_required
+def prof():
+    return render_template("profd.html", user=current_user)
+

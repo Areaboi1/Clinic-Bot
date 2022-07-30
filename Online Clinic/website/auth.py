@@ -41,6 +41,7 @@ def sign_up():
     if request.method == "POST":
         email = request.form.get('email')
         first_name = request.form.get('firstName')
+        #age = request.form.get('age')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
@@ -55,8 +56,10 @@ def sign_up():
             flash("Passwords don't match.", category="error")
         elif len(password1) < 7:
             flash("Password must be at least 7 characters.", category="error")
+        #elif len(age) > 2:
+            #flash("Age should be less than 3 characters.", category="error")
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method="sha256"))
+            new_user = User(email=email,first_name=first_name, password=generate_password_hash(password1, method="sha256"))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember = True)

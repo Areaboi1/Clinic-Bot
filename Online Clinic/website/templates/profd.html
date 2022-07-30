@@ -1,3 +1,14 @@
 <!-- Profile page -->
 {% extends "base.html" %} {% block title %}Profile{% endblock %} {%block
 content%}
+<form>
+    <div class="Email">
+        <label for="email"> Email Address </label>
+        <ul class="list-group list-group-flush" id="email">
+            {% for email in user.email %}
+            <li class="list-group-item">
+                {{ User.email}}
+            </li>
+            {%endfor%}
+    </div>
+
