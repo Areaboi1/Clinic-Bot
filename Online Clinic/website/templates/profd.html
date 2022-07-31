@@ -5,11 +5,10 @@ content%}
     <div class="Email">
         <label for="email"> Email Address </label>
         <ul class="list-group list-group-flush" id="email">
-            {% for email in user.email %}
+            
             <li class="list-group-item">
-                {{ User.email}}
+                {{ email }}
             </li>
-            {%endfor%}
-    </div>
+        </div>
 </form>
 {% endblock %}
