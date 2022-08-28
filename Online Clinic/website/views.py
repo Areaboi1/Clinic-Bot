@@ -60,7 +60,7 @@ def prof():
 def cancel():
     return render_template("cancelapp.html", user=current_user)
 
-@views.route('/view', methods=['GET','POST'])
+@views.route('/v', methods=['GET','POST'])
 @login_required
-def view():
+def v():
     return render_template("view.html", user=current_user)

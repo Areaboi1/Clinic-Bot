@@ -1,5 +1,6 @@
-{% extends "base.html" %} {% block title %}Book Appointment{% endblock %} {%block content%}
-<div id="current_date"></p>
+{% extends "base.html" %} {% block title %}Book Appointment{% endblock %}
+{%block content%}
+<!--<div id="current_date">
 	<script>
 	date = new Date();
 	year = date.getFullYear();
@@ -20,4 +21,14 @@
 	<br />
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
+-->
+<form method="POST">
+	<h3 align="center">Book Appointment</h3>
+	<div class="form-group">
+
+		<label for="date">Date and Time</label>
+		<input type="datetime-local" class="form-control" id="date" name="date" placeholder="Enter date"></input>
+	</div>
+</form>
+
 {% endblock %}
