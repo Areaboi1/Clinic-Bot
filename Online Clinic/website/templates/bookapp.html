@@ -25,10 +25,38 @@
 <form method="POST">
 	<h3 align="center">Book Appointment</h3>
 	<div class="form-group">
+		<label for="issue">Medical Issue</label>
+		<input
+			type="text"
+			class="form-control"
+			id="issue"
+			name="issue"
+			placeholder="Enter reason"
+		/>
+		<br />
+		<label for="clinic">Enter Clinic</label><br />
+		<input type="radio" id="Clementi" name="clinic" value="Clementi" />
+		<label for="Clementi">Clementi</label><br />
+		<input type="radio" id="Jurong" name="clinic" value="Jurong" />
+		<label for="html">Jurong</label><br /><br />
+
+		<label for="doctor">Enter Doctor</label><br />
+		<input type="radio" id="Lim" name="doctor" value="Lim" />
+		<label for="Lim">Dr.Lim</label><br />
+		<input type="radio" id="Wang" name="doctor" value="Wang" />
+		<label for="Wang">Dr.Wang</label><br /><br />
 
 		<label for="date">Date and Time</label>
-		<input type="datetime-local" class="form-control" id="date" name="date" placeholder="Enter date"></input>
+		<input
+			type="datetime-local"
+			class="form-control"
+			id="date"
+			name="date"
+			placeholder="Enter date"
+		/>
 	</div>
+	<br />
+	<button type="submit" class="btn-btn-primary">Submit</button>
 </form>
 
 {% endblock %}
