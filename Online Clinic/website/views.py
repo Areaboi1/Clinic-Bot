@@ -55,3 +55,12 @@ def book():
 def prof():
     return render_template("profd.html", user=current_user)
 
+@views.route('/cancel', methods=['GET','POST'])
+@login_required
+def cancel():
+    return render_template("cancelapp.html", user=current_user)
+
+@views.route('/view', methods=['GET','POST'])
+@login_required
+def view():
+    return render_template("view.html", user=current_user)
