@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime(timezone=True), unique = True)
+    date = db.Column(db.Date)
     doctor = db.Column(db.String(20))
     issue = db.Column(db.String(50))
     clinic = db.Column(db.String(20))

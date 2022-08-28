@@ -1,2 +1,7 @@
 {% extends "base.html" %} {% block title %}View Appointment{% endblock %}
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="book">
+	{% for book in user.books %} {% book.clinic%} {%book.doctor%} {%book.issue%}
+	{% book.date %} {% endfor %}
+</ul>
 {%block content%} {%endblock%}
