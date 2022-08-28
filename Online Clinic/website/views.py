@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
-from .models import Note
+from .models import Note, Book
 from . import db
 import json
 
@@ -51,19 +51,11 @@ def book():
         elif len(date) < 3:
             flash("Choose a date.", category="error")
         else:
-            pass
-
-#    if request.method == "POST":
-#       bookt = request.form.get('bookt')
-#       user = User.query.filter_by(email=email).first()
-#        if user:
-#           flash('Not available.', category='error')
-#       else:
-#           new_note = Note(data=note, user_id=current_user.id)
-# 
-#           db.session.add(new_note)
-#           db.session.commit()
-#        flash('Appointment was booked.', category="success")
+            new_book = Book(issue=issue, clinic=clinic, doctor=doctor,date=date, user_id=current_user.id)
+            db.session.add(new_book)
+            db.session.commit()
+            flash('Appointment was booked.', category="success")
+            return redirect(url_for('views.home'))
     return render_template("bookapp.html", user=current_user)
 
 @views.route('/prof', methods=['GET','POST'])

@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(150))
     age = db.Column(db.String(3))
     notes = db.relationship('Note')
+    books = db.relationship('Book')
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)

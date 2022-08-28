@@ -22,7 +22,7 @@ def create_app():
 
     #import .models as models prolly does not work
     #pls remeber to put booking dbb here too
-    from .models import User, Note
+    from .models import User,Note,Book 
 
     create_database(app)
 
