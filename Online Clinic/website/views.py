@@ -51,11 +51,22 @@ def book():
         elif len(date) < 3:
             flash("Choose a date.", category="error")
         else:
-            new_book = Book(issue=issue, clinic=clinic, doctor=doctor,date=date, user_id=current_user.id)
+            new_book = Book(issue=issue, clinic=clinic, doctor=doctor,date=date,user_id=current_user.id)
             db.session.add(new_book)
             db.session.commit()
-            flash('Appointment was booked.', category="success")
-            return redirect(url_for('views.home'))
+            flash('Appointment was booked', category="success")
+
+#    if request.method == "POST":
+#       bookt = request.form.get('bookt')
+#       user = User.query.filter_by(email=email).first()
+#        if user:
+#           flash('Not available.', category='error')
+#       else:
+#           new_note = Note(data=note, user_id=current_user.id)
+# 
+#           db.session.add(new_note)
+#           db.session.commit()
+#        flash('Appointment was booked.', category="success")
     return render_template("bookapp.html", user=current_user)
 
 @views.route('/prof', methods=['GET','POST'])
