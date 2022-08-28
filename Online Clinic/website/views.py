@@ -42,14 +42,11 @@ def book():
         clinic = request.form.get("clinic")
         doctor = request.form.get("doctor")
         date = request.form.get("date")
-        print(type(type(clinic)))
-
         if len(issue) < 3:
             flash("Issue too short.", category="error")
         elif type(clinic) != str:
             flash("Choose a clinic.", category="error")
-            print("Why")
-        elif type(doctor) != 'str':
+        elif type(doctor) != str:
             flash("Choose a doctor.", category="error")
         elif len(date) < 3:
             flash("Choose a date.", category="error")

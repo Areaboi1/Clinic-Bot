@@ -13,10 +13,13 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
-    #age = db.Column(db.String(2))
+    age = db.Column(db.String(3))
     notes = db.relationship('Note')
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    date = db.Column(db.DateTime(timezone=True), unique = True)
+    doctor = db.Column(db.String(20))
+    issue = db.Column(db.String(50))
+    clinic = db.Column(db.String(20))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

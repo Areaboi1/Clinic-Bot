@@ -21,6 +21,7 @@ def create_app():
     app.register_blueprint(auth,url_prefix="/")
 
     #import .models as models prolly does not work
+    #pls remeber to put booking dbb here too
     from .models import User, Note
 
     create_database(app)
