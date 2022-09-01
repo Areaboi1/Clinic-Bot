@@ -51,7 +51,7 @@ def book():
         elif len(date) < 3:
             flash("Choose a date.", category="error")
         else:
-            new_book = Book(issue=issue, clinic=clinic, doctor=doctor,date=date,user_id=current_user.id)
+            new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id)
             db.session.add(new_book)
             db.session.commit()
             flash('Appointment was booked', category="success")
