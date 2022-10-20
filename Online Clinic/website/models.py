@@ -13,6 +13,7 @@ class Note(db.Model):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
+    type = db.Column(db.String(150))
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
     age = db.Column(db.String(3))
@@ -21,7 +22,7 @@ class User(db.Model, UserMixin):
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    date = db.Column(db.Date, default=func.now())
     doctor = db.Column(db.String(20))
     issue = db.Column(db.String(50))
     clinic = db.Column(db.String(20))

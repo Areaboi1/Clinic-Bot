@@ -41,17 +41,17 @@ def book():
         issue = request.form.get("issue")
         clinic = request.form.get("clinic")
         doctor = request.form.get("doctor")
-        date = request.form.get("date")
+        bdate = request.form.get("date")
         if len(issue) < 3:
             flash("Issue too short.", category="error")
         elif type(clinic) != str:
             flash("Choose a clinic.", category="error")
         elif type(doctor) != str:
             flash("Choose a doctor.", category="error")
-        elif len(date) < 3:
+        elif len(bdate) < 3:
             flash("Choose a date.", category="error")
         else:
-            new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id)
+            new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=bdate, user_id=current_user.id)
             db.session.add(new_book)
             db.session.commit()
             flash('Appointment was booked', category="success")
