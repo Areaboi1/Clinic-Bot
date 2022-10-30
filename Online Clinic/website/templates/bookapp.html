@@ -1,0 +1,64 @@
+{% extends "base.html" %} {% block title %}Book Appointment{% endblock %}
+{%block content%}
+<!--<div id="current_date">
+	<script>
+	date = new Date();
+	year = date.getFullYear();
+	month = date.getMonth() + ;
+	day = date.getDate();
+	time1 = year + "-" + month + "/" + day;
+	</script>
+<form method="POST">
+	<label for="meeting-time">Choose a time for your appointment:</label>
+	<br />
+	<div align="center">
+		<input
+			type="datetime-local"
+			id="bookt"
+			name="bookt"
+		/>
+	</div>
+	<br />
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+-->
+<form method="POST">
+	<h3 align="center">Book Appointment</h3>
+	<div class="form-group">
+		<label for="issue">Medical Issue</label>
+		<input
+			type="text"
+			class="form-control"
+			id="issue"
+			name="issue"
+			placeholder="Enter reason"
+		/>
+		<br />
+		<label for="clinic">Enter Clinic</label><br />
+		<input type="radio" id="Clementi" name="clinic" value="Clementi" />
+		<label for="Clementi">Clementi</label><br />
+		<input type="radio" id="Jurong" name="clinic" value="Jurong" />
+		<label for="html">Jurong</label><br /><br />
+
+		<label for="doctor">Enter Doctor</label><br />
+		<input type="radio" id="Lim" name="doctor" value="Lim" />
+		<label for="Lim">Dr. Lim</label><br />
+		<input type="radio" id="Wang" name="doctor" value="Wang" />
+		<label for="Wang">Dr. Wang</label><br /><br />
+
+		<label for="date">Date and Time</label>
+		<input
+			type="date"
+			class="form-control"
+			id="date"
+			name="date"
+			placeholder="Enter date"
+		/>
+	</div>
+	<br />
+	<div align="center">
+		<button type="submit" class="btn btn-primary">Book</button>
+	</div>
+</form>
+
+{% endblock %}
