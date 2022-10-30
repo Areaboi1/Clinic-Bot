@@ -46,8 +46,6 @@ def book():
         datetime= str(date) + str(time)
         if len(issue) < 3:
             flash("Issue too short.", category="error")
-        elif type(clinic) != str:
-            flash("Choose a clinic.", category="error")
         elif type(doctor) != str:
             flash("Choose a doctor.", category="error")
         elif len(date) < 3:
