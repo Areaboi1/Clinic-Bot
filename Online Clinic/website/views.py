@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
-from .models import Note
+from .models import Book, Note
 from . import db
 import json
 
@@ -37,6 +37,28 @@ def delete_note():
 @views.route('/book', methods=['GET','POST'])
 @login_required
 def book():
+    if request.method == "POST":
+        issue = request.form.get("issue")
+        clinic = "Queenstown"
+        doctor = request.form.get("doctor")
+        date = request.form.get("date")
+        time = request.form.get("time")
+        datetime= str(date) + str(time)
+        if len(issue) < 3:
+            flash("Issue too short.", category="error")
+        elif type(clinic) != str:
+            flash("Choose a clinic.", category="error")
+        elif type(doctor) != str:
+            flash("Choose a doctor.", category="error")
+        elif len(date) < 3:
+            flash("Choose a date.", category="error")
+        elif len(time) < 1 and len(time) > 2 and int(time)>24 and int(time)<1:
+            flash("Choose a correct time.", category="error")
+        else:
+            new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime)
+            db.session.add(new_book)
+            db.session.commit()
+            flash('Appointment was booked', category="success")
 #    if request.method == "POST":
 #       bookt = request.form.get('bookt')
 #       user = User.query.filter_by(email=email).first()

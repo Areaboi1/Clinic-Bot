@@ -21,3 +21,7 @@ class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    issue = db.Column(db.String(30))
+    doctor = db.Column(db.String(30))
+    datetime = db.Column(db.String(50),unique=True)
+    time = db.Column(db.String(4))
