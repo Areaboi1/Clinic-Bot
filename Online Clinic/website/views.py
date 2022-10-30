@@ -55,9 +55,6 @@ def book():
             flash("Choose a correct time.", category="error")
         else:
             time += ":00"
-            k1=current_user
-            k.append(k1)
-            print(k)
             new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime)
             db.session.add(new_book)
             db.session.commit()
