@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
-from .models import Book, Note
+from .models import Book, Note, User, Rel
 from . import db
+from .text1 import k, k1
 import json
 
 
@@ -54,6 +55,9 @@ def book():
             flash("Choose a correct time.", category="error")
         else:
             time += ":00"
+            k1=current_user
+            k.append(k1)
+            print(k)
             new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime)
             db.session.add(new_book)
             db.session.commit()
@@ -80,6 +84,13 @@ def prof():
 @login_required
 def viewapp():
     return render_template("viewapp.html", user=current_user)
+
+@views.route('/admin', methods=['GET','POST'])
+@login_required
+def admin():
+    #user = User.query.filter_by(email=email).first()
+    #print(user)
+    return render_template("admin.html", user=current_user)
 
 @views.route('/delete-book', methods=["POST"])
 def delete_book():

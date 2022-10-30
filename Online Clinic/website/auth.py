@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User
+from .models import User,Rel
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -17,11 +17,17 @@ def login():
         password = request.form.get('password')
 
         user = User.query.filter_by(email=email).first()
+        print(user)
         if user:
             if check_password_hash(user.password, password):
-                flash('Logged in succesfully!', category='success')
-                login_user(user, remember=True)
-                return redirect(url_for('views.home'))
+                if email[-9:]=="admin.com":
+                    flash('Logged in succesfully!', category='success')
+                    login_user(user, remember=True)
+                    return redirect(url_for('views.admin'))
+                else:
+                    flash('Logged in succesfully!', category='success')
+                    login_user(user, remember=True)
+                    return redirect(url_for('views.home'))
             else:
                 flash('Incorrect password, try again.', category="error")
         else:
@@ -58,11 +64,20 @@ def sign_up():
         elif len(age) > 2:
             flash("Age cannot be more than 2 characters.", category="error")
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method="sha256"),age=age)
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method="sha256"),age=age,rel_id=1)
             db.session.add(new_user)
             db.session.commit()
-            login_user(new_user, remember = True)
-            flash("Account created!", category="success")
-            return redirect(url_for('views.home'))
+            #new_user1 = Rel(id=1,)
+            #db.session.add(new_user1)
+            #db.session.commit()
+            if email[-9:]=="admin.com":
+                login_user(new_user, remember = True)
+                flash("Account created!", category="success")
+                return redirect(url_for('views.admin'))
+
+            else:
+                login_user(new_user, remember = True)
+                flash("Account created!", category="success")
+                return redirect(url_for('views.home'))
             #add user to database
     return render_template("sign_up.html", user=current_user)

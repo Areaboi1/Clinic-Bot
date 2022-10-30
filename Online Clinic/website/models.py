@@ -16,6 +16,8 @@ class User(db.Model, UserMixin):
     notes = db.relationship('Note')
     age = db.Column(db.String(3))
     books = db.relationship('Book')
+    rel_id = db.Column(db.Integer, db.ForeignKey('rel.id'))
+
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,3 +28,8 @@ class Book(db.Model):
     datetime = db.Column(db.String(50),unique=True)
     time = db.Column(db.String(6))
     clinic = db.Column(db.String(30))
+
+class Rel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    users = db.relationship('User')
+
