@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %}
-<style>
+<!--<style>
 	.info_section {
 		background-color: pink;
 		margin: 100px auto;
@@ -11,11 +11,11 @@
 		min-height: 250px;
 		float: left;
 	}
-</style>
+</style>-->
 {% block content%}
 
 <h1 align="center">Welcome</h1>
-<h4 align="center">We are currently only placed in Queenstown</h4>
+<h3 align="center">We are currently only placed in Queenstown</h3>
 <ul class="list-group list-group-flush" id="notes">
 	{% for note in user.notes %}
 	<li class="list-group-item">
@@ -36,44 +36,67 @@
 <br />
 <br />
 <div class="info-section">
-	<div
-		class="info_box"
-		style="
-			width: 33.3%;
-			min-height: 250px;
-			float: left;
-			background-color: white;
-		"
-	>
-		<!--<img align="center" src="P.PNG" alt="Profile icon" />-->
-		<h3 align="center">Profile Page</h3>
-		<h5 align="center">Check all your personal details.</h5>
-	</div>
-	<div
-		class="info_box"
-		style="
-			width: 33.3%;
-			min-height: 250px;
-			float: left;
-			background-color: white;
-		"
-	>
-		<h3 align="center">Book an Appointment!</h3>
-		<h5 align="center">Book an appointment today at our clinic.</h5>
-	</div>
-	<div
-		class="info_box"
-		style="
-			width: 33.3%;
-			min-height: 250px;
-			float: left;
-			background-color: white;
-		"
-	>
-		<h3>View your Apppointments</h3>
-		<h5 align="center">
-			View your past and upcoming appointments at the clinic.
-		</h5>
-	</div>
+	<a href="/prof">
+		<div
+			class="info_box"
+			style="
+				width: 25%;
+				min-height: 200px;
+				float: left;
+				background-color: #e5e6eb;
+				border: 1px solid black;
+				border-collapse: collapse;
+				border-radius: 7%;
+				margin-left: 68px;
+			"
+		>
+			<!--<img align="center" src="P.PNG" alt="Profile icon" />-->
+			<h3 align="center" style="color: black">Profile Page</h3>
+			<h5 align="center" style="color: black">
+				Check all your personal details.
+			</h5>
+		</div>
+	</a>
+	<a href="book">
+		<h3 color="white"></h3>
+		<div
+			class="info_box"
+			style="
+				width: 25%;
+				min-height: 200px;
+				float: left;
+				background-color: #e5e6eb;
+				border: 1px solid black;
+				border-collapse: collapse;
+				border-radius: 7%;
+				margin-left: 57px;
+			"
+		>
+			<h3 align="center" style="color: black">Book an Appointment!</h3>
+			<h5 align="center" style="color: black">
+				Book an appointment today at our clinic.
+			</h5>
+		</div>
+	</a>
+	<a href="/viewapp">
+		<div
+			class="info_box"
+			style="
+				width: 25%;
+				min-height: 200px;
+				float: left;
+				background-color: #e5e6eb;
+				border: 1px solid black;
+				border-collapse: collapse;
+				border-radius: 7%;
+				margin-left: 50px;
+			"
+		>
+			<h3 align="center" style="color: black">View your Appointments</h3>
+			<h5 align="center" style="color: black">
+				View your past and upcoming appointments at the clinic.
+			</h5>
+		</div>
+	</a>
 </div>
 {% endblock%}
