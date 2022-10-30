@@ -1,4 +1,18 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+<style>
+	.info_section {
+		background-color: pink;
+		margin: 100px auto;
+		min-height: 250px;
+		max-width: 970px;
+	}
+	.info_box {
+		width: 33.3%;
+		min-height: 250px;
+		float: left;
+	}
+</style>
+{% block content%}
 
 <h1 align="center">Welcome</h1>
 <h4 align="center">We are currently only placed in Queenstown</h4>
@@ -21,7 +35,45 @@
 </form>
 <br />
 <br />
-<div align="center">
-	<button type="submit" class="btn btn-primary">Book An Appointment</button>
+<div class="info-section">
+	<div
+		class="info_box"
+		style="
+			width: 33.3%;
+			min-height: 250px;
+			float: left;
+			background-color: white;
+		"
+	>
+		<!--<img align="center" src="P.PNG" alt="Profile icon" />-->
+		<h3 align="center">Profile Page</h3>
+		<h5 align="center">Check all your personal details.</h5>
+	</div>
+	<div
+		class="info_box"
+		style="
+			width: 33.3%;
+			min-height: 250px;
+			float: left;
+			background-color: white;
+		"
+	>
+		<h3 align="center">Book an Appointment!</h3>
+		<h5 align="center">Book an appointment today at our clinic.</h5>
+	</div>
+	<div
+		class="info_box"
+		style="
+			width: 33.3%;
+			min-height: 250px;
+			float: left;
+			background-color: white;
+		"
+	>
+		<h3>View your Apppointments</h3>
+		<h5 align="center">
+			View your past and upcoming appointments at the clinic.
+		</h5>
+	</div>
 </div>
 {% endblock%}

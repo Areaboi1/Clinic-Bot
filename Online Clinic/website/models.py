@@ -24,5 +24,5 @@ class Book(db.Model):
     issue = db.Column(db.String(30))
     doctor = db.Column(db.String(30))
     datetime = db.Column(db.String(50),unique=True)
-    time = db.Column(db.String(4))
+    time = db.Column(db.String(6))
     clinic = db.Column(db.String(30))

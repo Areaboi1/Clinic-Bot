@@ -1,13 +1,20 @@
 {% extends "base.html" %} {% block title %}Book Appointment{% endblock %}
+<style>
+	th {
+		size: 4;
+		width: 7px;
+	}
+</style>
 {%block content%}
-<table>
+<br /><br /><br /><br />
+<table align="center" border="4px" border-collapse="collapse">
 	<tr>
-		<th>Date</th>
-		<th>Time</th>
-		<th>Clinic</th>
-		<th>Doctor</th>
-		<th>Issue</th>
-		<th></th>
+		<th width="20%" align="center">Date</th>
+		<th width="20%" align="center">Time</th>
+		<th width="20%" align="center">Clinic</th>
+		<th width="20%" align="center">Doctor</th>
+		<th width="20%" align="center">Issue</th>
+		<th width="20%" align="center">Cancel</th>
 	</tr>
 	{% for book in user.books %}
 

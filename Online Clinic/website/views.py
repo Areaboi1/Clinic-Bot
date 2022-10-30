@@ -53,6 +53,7 @@ def book():
         elif len(time) < 1 or len(time) > 2 or int(time)>24 or int(time)<1:
             flash("Choose a correct time.", category="error")
         else:
+            time += ":00"
             new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime)
             db.session.add(new_book)
             db.session.commit()
