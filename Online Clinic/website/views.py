@@ -43,14 +43,14 @@ def book():
         doctor = request.form.get("doctor")
         date = request.form.get("date")
         time = request.form.get("time")
-        datetime= str(date) + str(time)
+        datetime= str(doctor) + str(date) + str(time)
         if len(issue) < 3:
             flash("Issue too short.", category="error")
         elif type(doctor) != str:
             flash("Choose a doctor.", category="error")
         elif len(date) < 3:
             flash("Choose a date.", category="error")
-        elif len(time) < 1 and len(time) > 2 and int(time)>24 and int(time)<1:
+        elif len(time) < 1 or len(time) > 2 or int(time)>24 or int(time)<1:
             flash("Choose a correct time.", category="error")
         else:
             new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime)
@@ -74,3 +74,19 @@ def book():
 @login_required
 def prof():
     return render_template("profd.html", user=current_user)
+
+@views.route('/viewapp', methods=['GET','POST'])
+@login_required
+def viewapp():
+    return render_template("viewapp.html", user=current_user)
+
+@views.route('/delete-book', methods=["POST"])
+def delete_book():
+    book = json.loads(request.data)
+    bookId = book['bookId']
+    book = Book.query.get(bookId)
+    if book:
+        if book.user_id == current_user.id:
+            db.session.delete(book)
+            db.session.commit()
+    return jsonify({})

@@ -6,11 +6,11 @@ function deleteNote(noteId) {
 		window.location.href = "/";
 	});
 }
-function deleteBook(BookId) {
-	fetch("/delete-Book", {
+function deletebook(bookId) {
+	fetch("/delete-book", {
 		method: "POST",
-		body: JSON.stringify({ BookId: BookId }),
+		body: JSON.stringify({ bookId: bookId }),
 	}).then((_res) => {
-		window.location.href = "/";
+		window.location.href = "/viewapp";
 	});
 }

@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %}Book Appointment{% endblock %}
+{%block content%}
+<table>
+	<tr>
+		<th>Date</th>
+		<th>Time</th>
+		<th>Clinic</th>
+		<th>Doctor</th>
+		<th>Issue</th>
+		<th></th>
+	</tr>
+	{% for book in user.books %}
+
+	<tr>
+		<td>{{ book.date}}</td>
+		<td>{{ book.time}}</td>
+		<td>{{ book.clinic}}</td>
+		<td>{{ book.doctor}}</td>
+		<td>{{ book.issue}}</td>
+		<td>
+			<button type="button" class="close" onClick="deletebook({{ book.id }})">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</td>
+	</tr>
+	{%endfor%}
+</table>
+{%endblock%}
