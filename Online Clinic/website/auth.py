@@ -64,20 +64,24 @@ def sign_up():
         elif len(age) > 2:
             flash("Age cannot be more than 2 characters.", category="error")
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method="sha256"),age=age,rel_id=1)
-            db.session.add(new_user)
-            db.session.commit()
             #new_user1 = Rel(id=1,)
             #db.session.add(new_user1)
             #db.session.commit()
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method="sha256"),age=age,rel_id=1)
+            db.session.add(new_user)
+            db.session.commit()
             if email[-9:]=="admin.com":
                 login_user(new_user, remember = True)
                 flash("Account created!", category="success")
                 return redirect(url_for('views.admin'))
-
+            elif email[-10:]=="doctor.com":
+                login_user(new_user, remember = True)
+                flash("Account created!", category="success")
+                return redirect(url_for('views.doc'))
             else:
                 login_user(new_user, remember = True)
                 flash("Account created!", category="success")
                 return redirect(url_for('views.home'))
+            
             #add user to database
     return render_template("sign_up.html", user=current_user)

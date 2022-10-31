@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    pname = db.Column(db.String(150))
     date = db.Column(db.String(34))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     issue = db.Column(db.String(30))

@@ -25,6 +25,16 @@
 <form method="POST">
 	<h3 align="center">Book Appointment</h3>
 	<div class="form-group">
+		<label for="pname"> Patient Name </label>
+		<input
+			type="text"
+			class="form-control"
+			id="pname"
+			name="pname"
+			placeholder="Enter name"
+			style="background-color: #e5e6eb"
+		/>
+		<br />
 		<label for="issue">Medical Issue</label>
 		<input
 			type="text"
@@ -49,6 +59,7 @@
 			name="date"
 			placeholder="Enter date"
 			style="background-color: #e5e6eb"
+			min="2022-01-11"
 		/>
 		<br />
 		<label for="time">Time(Enter in 1 hour blocks)</label>

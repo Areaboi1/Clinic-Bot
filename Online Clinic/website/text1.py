@@ -1,6 +1,9 @@
 import mysql.connector
 
-db1=mysql.connector.connect(host="localhost",user="root",passwd="12345678")
+db1=mysql.connector.connect(user='root', passwd='12345678',
+                              host='localhost',
+                              database='Book')
 mycurs=db1.cursor()
-q1="CREATE DATABASE Book"
+q1=""
+#mycurs.execute(q1)
 print("IT Worked")

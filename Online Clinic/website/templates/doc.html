@@ -1,7 +1,8 @@
-{% extends "base.html" %} {% block title %}Book Appointment{% endblock %}
+{% extends "base.html" %} {% block title %}Appointments{% endblock %}
 <style></style>
 {%block content%}
-<h2 align="center">View Appointments</h2>
+<h2 align="center">Appointments</h2>
+<h3 align="center">Welcome Dr.{%user.first_name%}</h3>
 <br /><br />
 
 <table
@@ -11,6 +12,8 @@
 	style="background-color: #c0c2ce"
 >
 	<tr>
+		<th width="20%" align="center" style="background-color: #d2d4dc">Name</th>
+		<th width="20%" align="center" style="background-color: #d2d4dc">Email</th>
 		<th width="20%" align="center" style="background-color: #d2d4dc">Date</th>
 		<th width="20%" align="center" style="background-color: #d2d4dc">Time</th>
 		<th width="20%" align="center" style="background-color: #d2d4dc">Clinic</th>
@@ -21,21 +24,19 @@
 	{% for book in user.books %}
 
 	<tr>
+		<td>{{ use.first_name}}</td>
+		<td>{{ use.email}}</td>
 		<td>{{ book.date}}</td>
 		<td>{{ book.time}}</td>
 		<td>{{ book.clinic}}</td>
 		<td>{{ book.doctor}}</td>
 		<td>{{ book.issue}}</td>
 		<td>
-			{%if book.date>"2022-10-29"%}
 			<button type="button" class="close" onClick="deletebook({{ book.id }})">
 				<span aria-hidden="true">&times;</span>
 			</button>
-			{%else%}
-			<h6>"Appointment taken"</h6>
-			{%endif%}
 		</td>
 	</tr>
-	{%endfor%}
+	{% endfor %} {%endfor%}
 </table>
 {%endblock%}

@@ -20,11 +20,11 @@
 		<th width="20%" align="center" style="background-color: #d2d4dc">Issue</th>
 		<th width="30%" align="center" style="background-color: #d2d4dc">Cancel</th>
 	</tr>
-	{% for use in user1 %}{% for book in use.books %}
+	{% for book in user.books %}
 
 	<tr>
-		<td>{{ use.first_name}}</td>
-		<td>{{ use.email}}</td>
+		<td></td>
+		<td></td>
 		<td>{{ book.date}}</td>
 		<td>{{ book.time}}</td>
 		<td>{{ book.clinic}}</td>

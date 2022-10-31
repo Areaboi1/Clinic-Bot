@@ -37,6 +37,10 @@
 					<a class="nav-item nav-link" id="book" href="/admin">Appointments</a>
 					<a class="nav-item nav-link" id="prof" href="/prof">Profile Page</a>
 					<a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+					{% elif user.is_authenticated and user.email[-10:]=="doctor.com"%}
+					<a class="nav-item nav-link" id="book" href="/doc">Appointments</a>
+					<a class="nav-item nav-link" id="prof" href="/prof">Profile Page</a>
+					<a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
 					{%elif user.is_authenticated%}
 
 					<a class="nav-item nav-link" id="home" href="/">Home</a>

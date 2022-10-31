@@ -1,9 +1,16 @@
+import json
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
 from .models import Book, Note, User, Rel
 from . import db
-from .text1 import k, k1
+from datetime import date
+import mysql.connector
 
+db1=mysql.connector.connect(user='root', passwd='12345678',
+                              host='localhost',
+                              database='Book')
+mycurs=db1.cursor()
+q1=""
 views = Blueprint('views',__name__)
 
 @views.route('/', methods=['GET','POST'])
@@ -36,14 +43,19 @@ def delete_note():
 @login_required
 def book():
     if request.method == "POST":
-        issue = request.form.get("issue")
+        issue = str(request.form.get("issue"))
         clinic = "Queenstown"
-        doctor = request.form.get("doctor")
-        date = request.form.get("date")
-        time = request.form.get("time")
+        doctor = str(request.form.get("doctor"))
+        date = str(request.form.get("date"))
+        time = str(request.form.get("time"))
+        pname = str(request.form.get("pname"))
+        #username = current_user.first_Name
+        #email = current_user.email
         datetime= str(doctor) + str(date) + str(time)
         if len(issue) < 3:
             flash("Issue too short.", category="error")
+        if len(pname) < 1:
+            flash("Name too short.", category="error")
         elif type(doctor) != str:
             flash("Choose a doctor.", category="error")
         elif len(date) < 3:
@@ -52,9 +64,11 @@ def book():
             flash("Choose a correct time.", category="error")
         else:
             time += ":00"
-            new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime)
+            new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime,pname=pname)
             db.session.add(new_book)
             db.session.commit()
+            #q1="INSERT INTO Book1 VALUES({a},{b},{c},{d},{e},{f},{g})".format(a=pname,b=date,c=time,d=clinic,e=doctor,f=issue,g=datetime)
+            #mycurs.execute(q1)
             flash('Appointment was booked', category="success")
 #    if request.method == "POST":
 #       bookt = request.form.get('bookt')
@@ -82,6 +96,13 @@ def viewapp():
 @views.route('/admin', methods=['GET','POST'])
 @login_required
 def admin():
+    #user = User.query.filter_by(email=email).first()
+    #print(user)
+    return render_template("admin.html", user=current_user)
+
+@views.route('/doc', methods=['GET','POST'])
+@login_required
+def doc():
     #user = User.query.filter_by(email=email).first()
     #print(user)
     return render_template("admin.html", user=current_user)
