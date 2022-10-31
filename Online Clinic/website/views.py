@@ -3,9 +3,6 @@ from flask_login import login_user, login_required, logout_user, current_user
 from .models import Book, Note, User, Rel
 from . import db
 from .text1 import k, k1
-import json
-
-
 
 views = Blueprint('views',__name__)
 
