@@ -62,8 +62,14 @@ def book():
             flash("Choose a date.", category="error")
         elif len(time) < 1 or len(time) > 2 or int(time)>24 or int(time)<1:
             flash("Choose a correct time.", category="error")
+            if len(time)==1:
+                time="0"+time
         else:
             time += ":00"
+            q1="INSERT INTO Book1 VALUES(%s,%s,%s,%s,%s,%s,%s)"
+            val=(pname,date,time,clinic,doctor,issue,datetime)
+            mycurs.execute(q1,val)
+            db1.commit()
             new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime,pname=pname)
             db.session.add(new_book)
             db.session.commit()
