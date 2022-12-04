@@ -111,7 +111,12 @@ def admin():
 def doc():
     #user = User.query.filter_by(email=email).first()
     #print(user)
-    return render_template("admin.html", user=current_user)
+    qu1="Select * from Book1 where Doctor=%s"
+    val=(current_user.first_name,)
+    mycurs.execute(qu1,val)
+    data1=mycurs.fetchall()
+
+    return render_template("doc.html", user=current_user,data1=data1)
 
 @views.route('/delete-book', methods=["POST"])
 def delete_book():
@@ -119,7 +124,6 @@ def delete_book():
     bookId = book['bookId']
     book = Book.query.get(bookId)
     if book:
-        if book.user_id == current_user.id:
-            db.session.delete(book)
-            db.session.commit()
+        db.session.delete(book)
+        db.session.commit()
     return jsonify({})

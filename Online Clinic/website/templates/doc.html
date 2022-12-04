@@ -2,7 +2,7 @@
 <style></style>
 {%block content%}
 <h2 align="center">Appointments</h2>
-<h3 align="center">Welcome Dr.{%user.first_name%}</h3>
+<h3 align="center">Welcome</h3>
 <br /><br />
 
 <table
@@ -13,7 +13,6 @@
 >
 	<tr>
 		<th width="20%" align="center" style="background-color: #d2d4dc">Name</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Email</th>
 		<th width="20%" align="center" style="background-color: #d2d4dc">Date</th>
 		<th width="20%" align="center" style="background-color: #d2d4dc">Time</th>
 		<th width="20%" align="center" style="background-color: #d2d4dc">Clinic</th>
@@ -21,22 +20,19 @@
 		<th width="20%" align="center" style="background-color: #d2d4dc">Issue</th>
 		<th width="30%" align="center" style="background-color: #d2d4dc">Cancel</th>
 	</tr>
-	{% for book in user.books %}
+	{% for m in data1 %}
 
 	<tr>
-		<td>{{ use.first_name}}</td>
-		<td>{{ use.email}}</td>
-		<td>{{ book.date}}</td>
-		<td>{{ book.time}}</td>
-		<td>{{ book.clinic}}</td>
-		<td>{{ book.doctor}}</td>
-		<td>{{ book.issue}}</td>
+		<td>{{ m[0]}}</td>
+		<td>{{ m[1]}}</td>
+		<td>{{ m[2]}}</td>
+		<td>{{ m[3]}}</td>
+		<td>{{ m[4]}}</td>
+		<td>{{ m[5]}}</td>
 		<td>
-			<button type="button" class="close" onClick="deletebook({{ book.id }})">
-				<span aria-hidden="true">&times;</span>
-			</button>
+			<!-- (Delete Button)-->
 		</td>
 	</tr>
-	{% endfor %} {%endfor%}
+	{% endfor %}
 </table>
 {%endblock%}

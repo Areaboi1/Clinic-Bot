@@ -24,6 +24,10 @@ def login():
                     flash('Logged in succesfully!', category='success')
                     login_user(user, remember=True)
                     return redirect(url_for('views.admin'))
+                elif email[-10:]=="doctor.com":
+                    flash('Logged in succesfully!', category='success')
+                    login_user(user, remember=True)
+                    return redirect(url_for('views.doc'))
                 else:
                     flash('Logged in succesfully!', category='success')
                     login_user(user, remember=True)
