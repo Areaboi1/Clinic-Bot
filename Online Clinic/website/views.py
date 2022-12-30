@@ -105,9 +105,23 @@ def viewapp():
 def admin():
     #user = User.query.filter_by(email=email).first()
     #print(user)
-    qu1="Select * from Book1"
-    mycurs.execute(qu1,)
-    data2=mycurs.fetchall()
+    if request.method == "POST":
+        doctor = [str(request.form.get("doctor")),]
+        str(len(doctor[0]))
+        if str(doctor[0])=="None":
+                    qu1="Select * from Book1"
+                    mycurs.execute(qu1,)
+                    data2=mycurs.fetchall()
+
+        else:
+            qu1="Select * from Book1 where Doctor=%s"
+            mycurs.execute(qu1,doctor)
+            data2=mycurs.fetchall()
+
+    else:
+        qu1="Select * from Book1"
+        mycurs.execute(qu1,)
+        data2=mycurs.fetchall()
     return render_template("admin.html", user=current_user,data2=data2)
 
 @views.route('/doc', methods=['GET','POST'])
@@ -115,19 +129,41 @@ def admin():
 def doc():
     #user = User.query.filter_by(email=email).first()
     #print(user)
-    qu1="Select * from Book1 where Doctor=%s"
-    val=(current_user.first_name,)
-    mycurs.execute(qu1,val)
-    data1=mycurs.fetchall()
+    if request.method == "POST":
+        val = (current_user.first_name,str(request.form.get("date")))
+        print(len(str(val[1])))
+        if str(val[1])=="":
+                    qu1="Select * from Book1 where Doctor=%s"
+                    val=(current_user.first_name,)
+                    mycurs.execute(qu1,val)
+                    data1=mycurs.fetchall()
+
+        else:
+            qu1="Select * from Book1 where Doctor=%s and Bdate=%s"
+            mycurs.execute(qu1,val)
+            data1=mycurs.fetchall()
+
+    else:
+        qu1="Select * from Book1 where Doctor=%s"
+        val=(current_user.first_name,)
+        mycurs.execute(qu1,val)
+        data1=mycurs.fetchall()
 
     return render_template("doc.html", user=current_user,data1=data1)
 
-@views.route('/delete-book', methods=["POST"])
+@views.route('/delete-book', methods=['GET',"POST"])
 def delete_book():
     book = json.loads(request.data)
     bookId = book['bookId']
+    #datetime = book['datetime']
+   # print(date1)
     book = Book.query.get(bookId)
     if book:
+        date1=[book.datetime,]
+        print(type(date1))
+        q1="DELETE FROM Book1 where datetime1=%s"
+        mycurs.execute(q1,date1)
+        db1.commit()
         db.session.delete(book)
         db.session.commit()
     return jsonify({})

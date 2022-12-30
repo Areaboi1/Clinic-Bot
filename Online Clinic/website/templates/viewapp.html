@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Book Appointment{% endblock %}
+{% extends "base.html" %} {% block title %}View Appointment{% endblock %}
 <style></style>
 {%block content%}
 <h2 align="center">View Appointments</h2>
@@ -27,7 +27,7 @@
 		<td>{{ book.issue}}</td>
 		<td>
 			{%if book.date>"2022-12-03"%}
-			<button type="button" class="close" onClick="deletebook({{ book.id }})">
+			<button type="button" class="close" onClick="deletebook({{ book.id}})">
 				<span aria-hidden="true">&times;</span>
 			</button>
 			{%else%}

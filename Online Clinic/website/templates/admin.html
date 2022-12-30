@@ -2,38 +2,54 @@
 <style></style>
 {%block content%}
 <h2 align="center">Appointments</h2>
+<h3 align="center">Welcome Admin</h3>
+
 <br /><br />
+<form method="POST">
+	<label for="doctor"> Select Doctor: </label>
+	<input type="radio" id="Lim" name="doctor" value="Lim" />
+	<label for="Lim">Dr. Lim</label>&nbsp&nbsp
+	<input type="radio" id="Wang" name="doctor" value="Wang" />
+	<label for="Wang">Dr. Wang</label>
+	<table
+		align="center"
+		border="4px"
+		border-collapse="collapse"
+		style="background-color: #c0c2ce"
+	>
+		<tr>
+			<th width="20%" align="center" style="background-color: #d2d4dc">Name</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">
+				Email
+			</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">Date</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">Time</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">
+				Clinic
+			</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">
+				Doctor
+			</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">
+				Issue
+			</th>
+		</tr>
+		{% for m in data2 %}
 
-<table
-	align="center"
-	border="4px"
-	border-collapse="collapse"
-	style="background-color: #c0c2ce"
->
-	<tr>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Name</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Email</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Date</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Time</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Clinic</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Doctor</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Issue</th>
-		<th width="30%" align="center" style="background-color: #d2d4dc">Cancel</th>
-	</tr>
-	{% for m in data2 %}
-
-	<tr>
-		<td>{{ m[0]}}</td>
-		<td>{{ m[6]}}</td>
-		<td>{{ m[1]}}</td>
-		<td>{{ m[2]}}</td>
-		<td>{{ m[3]}}</td>
-		<td>{{ m[4]}}</td>
-		<td>{{ m[5]}}</td>
-		<td>
-			<!-- (Delete Button)-->
-		</td>
-	</tr>
-	{% endfor %}
-</table>
+		<tr>
+			<td>{{ m[0]}}</td>
+			<td>{{ m[7]}}</td>
+			<td>{{ m[1]}}</td>
+			<td>{{ m[2]}}</td>
+			<td>{{ m[3]}}</td>
+			<td>{{ m[4]}}</td>
+			<td>{{ m[5]}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<br /><br />
+	<div align="center">
+		<button type="submit" class="btn btn-primary">Reset Search</button>
+	</div>
+</form>
 {%endblock%}

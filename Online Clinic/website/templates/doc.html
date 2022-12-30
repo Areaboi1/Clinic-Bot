@@ -2,37 +2,51 @@
 <style></style>
 {%block content%}
 <h2 align="center">Appointments</h2>
-<h3 align="center">Welcome</h3>
-<br /><br />
+<h3 align="center">Welcome Doctor</h3>
+<br />
+<form method="POST">
+	<label for="date">Select Date</label>
+	<input
+		type="date"
+		class="form-control"
+		id="date"
+		name="date"
+		placeholder="Enter date"
+		style="background-color: #e5e6eb"
+		min="2022-01-11"
+	/>
+	<br />
+	<table
+		align="center"
+		border="4px"
+		border-collapse="collapse"
+		style="background-color: #c0c2ce"
+	>
+		<tr>
+			<th width="20%" align="center" style="background-color: #d2d4dc">Name</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">Date</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">Time</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">
+				Clinic
+			</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">
+				Issue
+			</th>
+		</tr>
+		{% for m in data1 %}
 
-<table
-	align="center"
-	border="4px"
-	border-collapse="collapse"
-	style="background-color: #c0c2ce"
->
-	<tr>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Name</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Date</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Time</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Clinic</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Doctor</th>
-		<th width="20%" align="center" style="background-color: #d2d4dc">Issue</th>
-		<th width="30%" align="center" style="background-color: #d2d4dc">Cancel</th>
-	</tr>
-	{% for m in data1 %}
-
-	<tr>
-		<td>{{ m[0]}}</td>
-		<td>{{ m[1]}}</td>
-		<td>{{ m[2]}}</td>
-		<td>{{ m[3]}}</td>
-		<td>{{ m[4]}}</td>
-		<td>{{ m[5]}}</td>
-		<td>
-			<!-- (Delete Button)-->
-		</td>
-	</tr>
-	{% endfor %}
-</table>
+		<tr>
+			<td>{{ m[0]}}</td>
+			<td>{{ m[1]}}</td>
+			<td>{{ m[2]}}</td>
+			<td>{{ m[3]}}</td>
+			<td>{{ m[5]}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<br /><br />
+	<div align="center">
+		<button type="submit" class="btn btn-primary">Reset Search</button>
+	</div>
+</form>
 {%endblock%}
