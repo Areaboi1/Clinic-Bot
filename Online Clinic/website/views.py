@@ -52,9 +52,13 @@ def book():
         #username = current_user.first_Name
         email = current_user.email
         datetime= str(doctor) + str(date) + str(time)
-        if len(issue) < 3:
+        date1 = Book.query.filter_by(datetime=datetime).first()
+        print(date1)
+        if date1:
+            flash("Choose another date and time.", category="error")
+        elif len(issue) < 3:
             flash("Issue too short.", category="error")
-        if len(pname) < 1:
+        elif len(pname) < 1:
             flash("Name too short.", category="error")
         elif type(doctor) != str:
             flash("Choose a doctor.", category="error")
