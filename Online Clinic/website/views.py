@@ -50,7 +50,7 @@ def book():
         time = str(request.form.get("time"))
         pname = str(request.form.get("pname"))
         #username = current_user.first_Name
-        #email = current_user.email
+        email = current_user.email
         datetime= str(doctor) + str(date) + str(time)
         if len(issue) < 3:
             flash("Issue too short.", category="error")
@@ -66,8 +66,9 @@ def book():
                 time="0"+time
         else:
             time += ":00"
-            q1="INSERT INTO Book1 VALUES(%s,%s,%s,%s,%s,%s,%s)"
-            val=(pname,date,time,clinic,doctor,issue,datetime)
+            #inset a query filter
+            q1="INSERT INTO Book1 VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
+            val=(pname,date,time,clinic,doctor,issue,datetime,email)
             mycurs.execute(q1,val)
             db1.commit()
             new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime,pname=pname)
@@ -104,7 +105,10 @@ def viewapp():
 def admin():
     #user = User.query.filter_by(email=email).first()
     #print(user)
-    return render_template("admin.html", user=current_user)
+    qu1="Select * from Book1"
+    mycurs.execute(qu1,)
+    data2=mycurs.fetchall()
+    return render_template("admin.html", user=current_user,data2=data2)
 
 @views.route('/doc', methods=['GET','POST'])
 @login_required

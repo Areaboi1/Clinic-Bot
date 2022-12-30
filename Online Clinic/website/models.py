@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     age = db.Column(db.String(3))
     books = db.relationship('Book')
     rel_id = db.Column(db.Integer, db.ForeignKey('rel.id'))
+    email = db.Column(db.String(150))
 
 
 class Book(db.Model):
