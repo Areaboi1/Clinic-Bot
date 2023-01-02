@@ -78,20 +78,8 @@ def book():
             new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime,pname=pname)
             db.session.add(new_book)
             db.session.commit()
-            #q1="INSERT INTO Book1 VALUES({a},{b},{c},{d},{e},{f},{g})".format(a=pname,b=date,c=time,d=clinic,e=doctor,f=issue,g=datetime)
-            #mycurs.execute(q1)
             flash('Appointment was booked', category="success")
-#    if request.method == "POST":
-#       bookt = request.form.get('bookt')
-#       user = User.query.filter_by(email=email).first()
-#        if user:
-#           flash('Not available.', category='error')
-#       else:
-#           new_note = Note(data=note, user_id=current_user.id)
-# 
-#           db.session.add(new_note)
-#           db.session.commit()
-#        flash('Appointment was booked.', category="success")
+
     return render_template("bookapp.html", user=current_user)
 
 @views.route('/prof', methods=['GET','POST'])
