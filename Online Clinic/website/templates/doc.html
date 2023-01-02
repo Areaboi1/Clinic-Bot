@@ -32,6 +32,9 @@
 			<th width="20%" align="center" style="background-color: #d2d4dc">
 				Issue
 			</th>
+			<th width="20%" align="center" style="background-color: #d2d4dc">
+				Status
+			</th>
 		</tr>
 		{% for m in data1 %}
 
@@ -41,6 +44,13 @@
 			<td>{{ m[2]}}</td>
 			<td>{{ m[3]}}</td>
 			<td>{{ m[5]}}</td>
+			<td>
+				{%if m[1]>date1%}
+				<h6>"Appointment not taken"</h6>
+				{%else%}
+				<h6>"Appointment taken"</h6>
+				{%endif%}
+			</td>
 		</tr>
 		{% endfor %}
 	</table>

@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
 from .models import Book, Note, User, Rel
 from . import db
-from datetime import date
+from datetime import datetime
 import mysql.connector
 
 db1=mysql.connector.connect(user='root', passwd='12345678',
@@ -90,13 +90,15 @@ def prof():
 @views.route('/viewapp', methods=['GET','POST'])
 @login_required
 def viewapp():
-    return render_template("viewapp.html", user=current_user)
+    date1=datetime.today().strftime(r'%Y-%m-%d')
+    return render_template("viewapp.html", user=current_user,date1=date1)
 
 @views.route('/admin', methods=['GET','POST'])
 @login_required
 def admin():
     #user = User.query.filter_by(email=email).first()
     #print(user)
+    date1=datetime.today().strftime(r'%Y-%m-%d')
     if request.method == "POST":
         doctor = [str(request.form.get("doctor")),]
         str(len(doctor[0]))
@@ -114,13 +116,14 @@ def admin():
         qu1="Select * from Book1"
         mycurs.execute(qu1,)
         data2=mycurs.fetchall()
-    return render_template("admin.html", user=current_user,data2=data2)
+    return render_template("admin.html", user=current_user,data2=data2,date1=date1)
 
 @views.route('/doc', methods=['GET','POST'])
 @login_required
 def doc():
     #user = User.query.filter_by(email=email).first()
     #print(user)
+    date1=datetime.today().strftime(r'%Y-%m-%d')
     if request.method == "POST":
         val = (current_user.first_name,str(request.form.get("date")))
         print(len(str(val[1])))
@@ -141,7 +144,7 @@ def doc():
         mycurs.execute(qu1,val)
         data1=mycurs.fetchall()
 
-    return render_template("doc.html", user=current_user,data1=data1)
+    return render_template("doc.html", user=current_user,data1=data1,date1=date1)
 
 @views.route('/delete-book', methods=['GET',"POST"])
 def delete_book():
