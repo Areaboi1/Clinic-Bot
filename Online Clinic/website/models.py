@@ -26,7 +26,4 @@ class Book(db.Model):
     time = db.Column(db.String(6))
     clinic = db.Column(db.String(30))
 
-class Rel(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    users = db.relationship('User')
 

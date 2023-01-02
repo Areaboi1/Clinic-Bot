@@ -21,7 +21,7 @@ def create_app():
     app.register_blueprint(auth,url_prefix="/")
 
     #import .models as models prolly does not work
-    from .models import User, Note , Book, Rel
+    from .models import User, Book, Rel
 
     create_database(app)
 

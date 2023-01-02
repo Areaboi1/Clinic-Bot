@@ -1,7 +1,7 @@
 import json
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
-from .models import Book, Note, User, Rel
+from .models import Book, User
 from . import db
 from datetime import datetime
 import mysql.connector
@@ -22,6 +22,7 @@ def home():
 @views.route('/book', methods=['GET','POST'])
 @login_required
 def book():
+    date1=datetime.today().strftime(r'%Y-%m-%d')
     if request.method == "POST":
         issue = str(request.form.get("issue"))
         clinic = "Queenstown"
@@ -60,7 +61,7 @@ def book():
             db.session.commit()
             flash('Appointment was booked', category="success")
 
-    return render_template("bookapp.html", user=current_user)
+    return render_template("bookapp.html", user=current_user,date1=date1)
 
 @views.route('/prof', methods=['GET','POST'])
 @login_required
