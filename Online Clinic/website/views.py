@@ -22,6 +22,7 @@ def home():
 @views.route('/book', methods=['GET','POST'])
 @login_required
 def book():
+    from datetime import datetime
     date1=datetime.today().strftime(r'%Y-%m-%d')
     if request.method == "POST":
         issue = str(request.form.get("issue"))
@@ -32,8 +33,8 @@ def book():
         pname = str(request.form.get("pname"))
         #username = current_user.first_Name
         email = current_user.email
-        datetime= str(doctor) + str(date) + str(time)
-        date1 = Book.query.filter_by(datetime=datetime).first()
+        datetime1= str(doctor) + str(date) + str(time)
+        date1 = Book.query.filter_by(datetime=datetime1).first()
         print(date1)
         if date1:
             flash("Choose another date and time.", category="error")
@@ -53,10 +54,10 @@ def book():
             time += ":00"
             #inset a query filter
             q1="INSERT INTO Book1 VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
-            val=(pname,date,time,clinic,doctor,issue,datetime,email)
+            val=(pname,date,time,clinic,doctor,issue,datetime1,email)
             mycurs.execute(q1,val)
             db1.commit()
-            new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime,pname=pname)
+            new_book = Book(issue=issue, clinic=clinic, doctor=doctor, date=date, user_id=current_user.id,time=time,datetime=datetime1,pname=pname)
             db.session.add(new_book)
             db.session.commit()
             flash('Appointment was booked', category="success")
@@ -142,4 +143,5 @@ def delete_book():
         db1.commit()
         db.session.delete(book)
         db.session.commit()
+        flash('Appointment was cancelled!', category="success")
     return jsonify({})

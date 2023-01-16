@@ -71,7 +71,7 @@ def sign_up():
             #new_user1 = Rel(id=1,)
             #db.session.add(new_user1)
             #db.session.commit()
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method="sha256"),age=age,rel_id=1)
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method="sha256"),age=age)
             db.session.add(new_user)
             db.session.commit()
             if email[-9:]=="admin.com":

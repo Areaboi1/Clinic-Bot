@@ -8,10 +8,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
-    notes = db.relationship('Note')
     age = db.Column(db.String(3))
     books = db.relationship('Book')
-    rel_id = db.Column(db.Integer, db.ForeignKey('rel.id'))
     email = db.Column(db.String(150))
 
 
