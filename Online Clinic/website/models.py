@@ -23,5 +23,3 @@ class Book(db.Model):
     datetime = db.Column(db.String(50),unique=True)
     time = db.Column(db.String(6))
     clinic = db.Column(db.String(30))
-
-
